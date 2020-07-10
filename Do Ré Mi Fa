@@ -1,0 +1,35 @@
+#Dó Ré Mi Fá
+
+#Fernando Souza
+
+
+notes = (ring :C, :D, :E, :F, nil, :F,:F, nil, :C, :D, :C, :D, nil, :D, :D, nil, :C, :G, :F, :E, nil, :E, :E, nil, :C, :D, :E, :F, nil, :F, :F, nil,)
+
+live_loop :doremifa do
+  with_synth :piano do
+    play notes.tick, release: 1
+    sleep 0.3
+  end
+end
+
+in_thread do
+  live_loop :drum do
+    sample :drum_bass_soft
+    sleep 0.3
+    sample :drum_snare_hard
+    sleep 0.3
+    sample :drum_bass_soft
+    sleep 0.3
+    sample :drum_bass_soft
+    sleep 0.6
+    sample :drum_snare_hard
+    sleep 0.3
+    sample :drum_snare_hard
+    sleep 0.6
+  end
+end
+
+live_loop :cymbal do
+  sample :drum_cymbal_closed
+  sleep 0.3
+end
